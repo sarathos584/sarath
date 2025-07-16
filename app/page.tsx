@@ -19,6 +19,8 @@ import {
   ExternalLink,
 } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
+import Header from "@/components/Header"
+import Skills from "@/components/Skills"
 
 export default function Portfolio() {
   const [isVisible, setIsVisible] = useState<{ [key: string]: boolean }>({})
@@ -45,12 +47,7 @@ export default function Portfolio() {
     return () => observerRef.current?.disconnect()
   }, [])
 
-  const skills = [
-    { name: "JavaScript/TypeScript", level: 92, icon: <Code className="h-5 w-5" /> },
-    { name: "React/Next.js", level: 88, icon: <Code className="h-5 w-5" /> },
-    { name: "Node.js/Express", level: 85, icon: <Zap className="h-5 w-5" /> },
-    { name: "Database Design", level: 80, icon: <Users className="h-5 w-5" /> },
-  ]
+
 
   const projects = [
     {
@@ -163,55 +160,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       {/* Centered Header */}
-      <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-center relative">
-          <div className="flex items-center space-x-8">
-            <a
-              href="https://linkedin.com/in/sarath"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform duration-300 hover:scale-110"
-            >
-              <Button variant="ghost" size="icon" className="hover:bg-gray-100 rounded-full p-3">
-                <Linkedin className="h-5 w-5 text-gray-700" />
-              </Button>
-            </a>
-            <a
-              href="https://instagram.com/sarath"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform duration-300 hover:scale-110"
-            >
-              <Button variant="ghost" size="icon" className="hover:bg-gray-100 rounded-full p-3">
-                <Instagram className="h-5 w-5 text-gray-700" />
-              </Button>
-            </a>
-            <a
-              href="https://github.com/sarath"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform duration-300 hover:scale-110"
-            >
-              <Button variant="ghost" size="icon" className="hover:bg-gray-100 rounded-full p-3">
-                <Github className="h-5 w-5 text-gray-700" />
-              </Button>
-            </a>
-            <a
-              href="https://medium.com/@sarath"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-transform duration-300 hover:scale-110"
-            >
-              <Button variant="ghost" size="icon" className="hover:bg-gray-100 rounded-full p-3">
-                <FileText className="h-5 w-5 text-gray-700" />
-              </Button>
-            </a>
-          </div>
-          <Button className="absolute right-0 bg-gray-900 text-white hover:bg-gray-800 rounded-full px-8 py-2">
-            Contact Me
-          </Button>
-        </div>
-      </header>
+      <Header/>
 
       <main className="pt-4">
         {/* Hero Section */}
@@ -290,42 +239,7 @@ export default function Portfolio() {
         </section>
 
         {/* Skills Section */}
-        <section className="max-w-4xl mx-auto px-6 mb-32" id="skills" data-animate>
-          <div
-            className={`transition-all duration-1000 delay-200 ${isVisible.skills ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-          >
-            <h2 className="text-4xl font-bold mb-12 text-center bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-              Skills & Expertise
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {skills.map((skill, index) => (
-                <Card
-                  key={skill.name}
-                  className="border-0 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-gradient-to-br from-white to-gray-50"
-                >
-                  <CardContent className="p-6">
-                    <div className="flex items-center mb-4">
-                      <div className="p-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg text-white mr-3">
-                        {skill.icon}
-                      </div>
-                      <h3 className="font-bold text-lg">{skill.name}</h3>
-                    </div>
-                    <div className="w-full bg-gray-200 rounded-full h-3 mb-2">
-                      <div
-                        className="bg-gradient-to-r from-blue-500 to-purple-500 h-3 rounded-full transition-all duration-1000 ease-out"
-                        style={{
-                          width: isVisible.skills ? `${skill.level}%` : "0%",
-                          transitionDelay: `${index * 200}ms`,
-                        }}
-                      ></div>
-                    </div>
-                    <span className="text-sm text-gray-600 font-medium">{skill.level}%</span>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Skills isVisible={isVisible}/>
 
         {/* Projects Section - Slider */}
         <section className="max-w-6xl mx-auto px-6 mb-32" id="projects" data-animate>

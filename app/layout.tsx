@@ -37,8 +37,7 @@ export const metadata: Metadata = {
     title: "Sarath - Software Developer",
     description: "Passionate software developer building scalable web applications with modern technologies.",
     images: ["/og-image.jpg"],
-  },
-    generator: 'v0.dev'
+  }
 }
 
 export default function RootLayout({
